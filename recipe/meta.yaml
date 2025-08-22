@@ -33,6 +33,7 @@ requirements:
 test:
   source_files:
     - test
+    # contains ini_options for test
     - pyproject.toml
   imports:
     - pyccolo
@@ -58,7 +59,7 @@ about:
     Pyccolo (pronounced like the instrument "piccolo") is a library for
     declarative instrumentation in Python; i.e., it lets you specify the
     what of the instrumentation you wish to perform, and takes care of the how for you.
-  doc_url: https://piccolo-orm.readthedocs.io/
+  doc_url: https://piccolo-orm.readthedocs.io
   dev_url: https://github.com/smacke/pyccolo
 
 extra:
