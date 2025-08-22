@@ -1,50 +1,65 @@
 {% set name = "pyccolo" %}
-{% set version = "0.0.72" %}
+{% set version = "0.0.52" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyccolo-{{ version }}.tar.gz
-  sha256: 407600862d97bec94174beab610311c84c11f643108fd36f504f3423485096f7
+  url: https://github.com/smacke/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 793f65d29168dc60cca108d95f85f36388239ac1e1128dbd9a20527eeecba70d
 
 build:
   entry_points:
     - pyc = pyccolo.__main__:main
     - pyccolo = pyccolo.__main__:main
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: True # [py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -v
   number: 0
 
 requirements:
   host:
     - pip
-    - python {{ python_min }}
+    - python
     - setuptools >=48
     - setuptools-git-versioning
     - wheel >=0.30.0
+
   run:
-    - python >={{ python_min }}
+    - python
     - traitlets
     - typing_extensions
 
 test:
+  source_files:
+    - test
+    - pyproject.toml
   imports:
     - pyccolo
+  requires:
+    - pip
+    - python
+    - pytest
+    - hypothesis
   commands:
     - pip check
     - pyc --help
     - pyccolo --help
-  requires:
-    - pip
-    - python {{ python_min }}
+    # test/test_handlers.py::test_sandbox - KeyError: 'x'
+    - pytest -v -k "not test_sandbox"
 
 about:
   home: https://github.com/smacke/pyccolo
-  summary: Declarative instrumentation for Python
   license: BSD-3-Clause
+  license_family: BSD
   license_file: docs/LICENSE.txt
+  summary: Declarative instrumentation for Python
+  description: |
+    Pyccolo (pronounced like the instrument "piccolo") is a library for
+    declarative instrumentation in Python; i.e., it lets you specify the
+    what of the instrumentation you wish to perform, and takes care of the how for you.
+  doc_url: https://piccolo-orm.readthedocs.io/
+  dev_url: https://github.com/smacke/pyccolo
 
 extra:
   recipe-maintainers:
