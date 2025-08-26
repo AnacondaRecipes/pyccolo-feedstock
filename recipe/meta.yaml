@@ -24,7 +24,6 @@ requirements:
     - setuptools >=48
     - setuptools-git-versioning
     - wheel >=0.30.0
-
   run:
     - python
     - traitlets
