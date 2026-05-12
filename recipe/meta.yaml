@@ -1,5 +1,5 @@
 {% set name = "pyccolo" %}
-{% set version = "0.0.52" %}
+{% set version = "0.0.85" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/smacke/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 793f65d29168dc60cca108d95f85f36388239ac1e1128dbd9a20527eeecba70d
+  sha256: a069c84201d214e79d722a4ead3560f3a44c72f60c0eb6ab608238a386934775
 
 build:
   entry_points:
     - pyc = pyccolo.__main__:main
     - pyccolo = pyccolo.__main__:main
-  skip: True # [py<36]
+  skip: true  # [py<36]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -v
   number: 0
 
