@@ -10,12 +10,12 @@ source:
   sha256: a069c84201d214e79d722a4ead3560f3a44c72f60c0eb6ab608238a386934775
 
 build:
+  number: 0
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -v
   entry_points:
     - pyc = pyccolo.__main__:main
     - pyccolo = pyccolo.__main__:main
-  skip: true  # [py<36]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -v
-  number: 0
 
 requirements:
   host:
@@ -58,7 +58,7 @@ about:
     Pyccolo (pronounced like the instrument "piccolo") is a library for
     declarative instrumentation in Python; i.e., it lets you specify the
     what of the instrumentation you wish to perform, and takes care of the how for you.
-  doc_url: https://piccolo-orm.readthedocs.io
+  doc_url: https://github.com/smacke/pyccolo
   dev_url: https://github.com/smacke/pyccolo
 
 extra:
