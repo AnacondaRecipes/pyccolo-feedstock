@@ -1,5 +1,5 @@
 {% set name = "pyccolo" %}
-{% set version = "0.0.85" %}
+{% set version = "0.0.96" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/smacke/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: a069c84201d214e79d722a4ead3560f3a44c72f60c0eb6ab608238a386934775
+  sha256: d37d118abceebc54d2969041f075006a261c57af838b9d97cea01d2551ef3200
 
 build:
   number: 0
